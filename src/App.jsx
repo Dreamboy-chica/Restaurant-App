@@ -1,23 +1,44 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import './App.css';
 import Navbar from "./Navbar";
 import Shimmer from "./Shimmer";
+import Ct from './Ct';
 
-function AxiosData() {
-  const [recipes, setRecipes] = useState([]);
-  const [originalRecipes, setOriginalRecipes] = useState([]);
+function App() {
+  const [originalRecipes, setOriginalRecipes] = useState([]); // Original data
+  const [recipes, setRecipes] = useState([]); // Duplicate copy of data
+  const [searchText, setSearchText] = useState(""); // Search state
 
   useEffect(() => {
     axios.get("https://dummyjson.com/recipes")
       .then((res) => {
-        setRecipes(res.data.recipes);
         setOriginalRecipes(res.data.recipes); // Store original data
+        setRecipes(res.data.recipes);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
+  const seafun = (e) => {
+    setSearchText(e.target.value);
+  };
+
+  const filterfun = () => {
+    const filtered = originalRecipes.filter((res) =>
+      res.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setRecipes(filtered);
+  };
+
+  // Expose the functions and state for context
+  const obj = {
+    searchText,
+    seafun,
+    filtered: filterfun,
+    setSearchText, // Expose setSearchText to clear input
+  };
 
   // Function to filter data by rating
   const filterByRating = () => {
@@ -31,49 +52,44 @@ function AxiosData() {
     setRecipes(newData);
   };
 
-  // // Reset the recipes to original
-  // const resetFilters = () => {
-  //   setRecipes(originalRecipes);
-  // };
+  if (originalRecipes.length === 0) return <Shimmer />;
 
+  return (
+    <div>
+      <Ct.Provider value={obj}>
+        <Navbar />
+      </Ct.Provider>
 
-  //Shimmer UI/Conditional rendering/ return a>b?a:b
-  // if(originalRecipes.length==0)
-  // {
-  //   return <Shimmer/>
-  // }
-
-  return originalRecipes.length==0?<Shimmer/>:(
-    <div> 
-      <Navbar/> 
-
-      <div className="filterdata">     
+      <div className="filterdata">
         <button type="button" className="btn" onClick={filterByRating}>Rating: 4+</button>
         <button type="button" className="btn" onClick={() => filterByMealType("Breakfast")}>Breakfast</button>
         <button type="button" className="btn" onClick={() => filterByMealType("Lunch")}>Lunch</button>
         <button type="button" className="btn" onClick={() => filterByMealType("Dinner")}>Dinner</button>
-        {/* <button type="button" className="btn" onClick={resetFilters}>Reset</button> */}
-      </div>   
+      </div>
 
       <div className='wrapper'>
-        {recipes.map((item) => (
-          <div className='cards' key={item.id}> 
-            <img src={item.image} alt="no-data" /> 
-            <div className="cardgap">
-              <div className='name'>{item.name}</div>
-              <div className="cuisine">{item.cuisine}</div>
-              <div className="dis"> 
-                <div>{(item.prepTimeMinutes) / 10} km</div>
-                <div className="backrating"> 
-                  <div className='rating'>{item.rating}<i className="fa-solid fa-star"></i></div>
+        {recipes.length === 0 ? (
+          <div>No recipes found</div>
+        ) : (
+          recipes.map((item) => (
+            <div className='cards' key={item.id}>
+              <img src={item.image} alt="no-data" />
+              <div className="cardgap">
+                <div className='name'>{item.name}</div>
+                <div className="cuisine">{item.cuisine}</div>
+                <div className="dis">
+                  <div>{(item.prepTimeMinutes) / 10} km</div>
+                  <div className="backrating">
+                    <div className='rating'>{item.rating}<i className="fa-solid fa-star"></i></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
-  ); 
+  );
 }
 
-export default AxiosData;
+export default App;
