@@ -1,0 +1,232 @@
+
+*{margin:0px;
+  padding:0px;
+  box-sizing:border-box;
+}
+.wrapper{
+  display:flex;
+  flex-wrap:wrap;
+  margin-left:40px;
+  margin-right:40px;
+  justify-content: center;
+ 
+}
+
+.cards{
+
+  display:flex;
+  flex-direction:column;
+  box-sizing:border-box;
+  width:310px;
+  height:280px;
+  /* background-color:red; */
+  cursor: pointer;
+  border-radius:10px;
+  margin:20px;
+  gap:8px;
+  border-radius:10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cards:hover {
+  transform: scale(1.05); /* Slightly enlarges the card on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow on hover */
+}
+
+.cardgap{
+  margin:8px;
+}
+
+.name{
+  font-family: Okra, Helvetica, sans-serif;
+  word-spacing: 4px; 
+  font-weight: bolder;
+  color:rgb(54, 51, 51);
+
+  
+}
+.rating{
+  color:white;
+  font-weight: bolder;
+  font-size:13px;
+  font-weight: bolder;
+
+}
+
+.fa-star{
+   color:white;
+   font-size:8px;
+   padding: 2px;;
+}
+
+.backrating{
+  background-color:green;
+  padding:3px;
+  border-radius:4px;
+}
+
+.dis{
+   display:flex;
+   justify-content: space-between;
+}
+
+img{
+  width:310px;
+  height:180px;  
+  border-radius:10px;
+}
+
+.cuisine{
+  color:rgb(199, 30, 30);
+  margin-top:3px;
+  margin-bottom:5px;
+
+}
+
+.filterdata{
+  display:flex;
+  justify-content: center;
+
+}
+
+.filter{
+  color:red;
+  /* padding:10px; */
+  font-size:20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn{
+
+  color: rgb(156, 156, 156);
+  font-weight: 300;
+  background-color:white;
+  outline:red;
+  border:1px solid rgb(207, 207, 207);
+  margin:10px;
+  box-shadow: rgba(54, 54, 54, 0.06) 0px 1px 2px;
+  
+}
+
+.btn:hover{
+  background-color:rgb(245, 245, 245)
+}
+
+
+/* 
+.navbar ul{
+  display:flex;
+}
+li{
+  list-style-type:none;
+
+}
+.navbar li b{
+  font-size:40px;
+
+}
+
+.navbar img{
+  width:78px;
+  height:78px;
+  margin-left:100px;
+  margin:0px;
+  padding:0px;
+} */
+
+
+/* style for the top home navabr */
+.navbar{
+  display:flex;
+  background-color:rgb(66, 65, 65);
+  color:white;
+  padding:25px 40px;
+  margin-bottom:50px;
+}
+
+.navbar div:hover{
+  color:rgb(191,41,56);
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.pancon{
+  display: flex;
+}
+
+.pancon b{
+  color:rgb(191,41,56);
+  font-size:30px;
+}
+
+/* search */
+.search {
+  position: relative; 
+  width: 250px;
+}
+
+.search input {
+  padding: 10px 40px 10px 40px; 
+  border: none; 
+  border-radius: 4px; 
+  outline: none; 
+  width: 100%;
+  color:gray;
+}
+
+.search button {
+  position: absolute;
+  left: 10px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  background: transparent; 
+  border: none;
+  cursor: pointer; 
+}
+
+.search button i {
+  font-size: 16px; 
+  color:grey; 
+}
+
+
+
+.banner{
+  width:100%;
+  height:210px;
+  background-color:#15253F;
+  position: relative;
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+  overflow: hidden; 
+}
+
+.banner h3{
+  position: absolute; 
+  color: rgb(230, 224, 224);     
+  font-size: 2rem;  
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+  font-weight: 300;
+}
+
+.spinner-border{
+  color:rgb(192, 190, 190);
+  position: absolute; 
+  font-size: 1rem;  
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+  font-weight: 300;
+  margin-top:100px;
+
+}
+
+.shimmer-container img{
+
+  margin-top:100px;
+  width:100%;
+  height:500px;
+  margin-left:100px;
+  margin-right:100px;
+}
+
