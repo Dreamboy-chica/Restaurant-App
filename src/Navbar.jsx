@@ -3,12 +3,12 @@ import './App.css';
 import Ct from './Ct';
 
 const Navbar = () => {
-  const [buttonLabel, setButtonLabel] = useState('Sign In');
+  const [buttonLabel, setButtonLabel] = useState('Log In');
   const obj = useContext(Ct);
 
   // Login/logout toggle button
   const toggleUserCred = () => {
-    setButtonLabel(prev => (prev === 'Sign In' ? 'Sign Up' : 'Sign In'));
+    setButtonLabel(prev => (prev === 'Log In' ? 'Log Out' : 'Log In'));
   };
 
   // Trigger search when the icon is clicked
