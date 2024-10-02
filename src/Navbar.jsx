@@ -1,9 +1,12 @@
 import { useContext, useState } from 'react';
 import './App.css';
 import Ct from './Ct';
+import useOnlineStatus from './useOnlineStatus';
 
 const Navbar = () => {
   const [buttonLabel, setButtonLabel] = useState('Log In');
+  const onlinestatus=useOnlineStatus
+
   const obj = useContext(Ct);
 
   // Login/logout toggle button
@@ -36,7 +39,6 @@ const Navbar = () => {
           style={{ cursor: 'pointer' }}
         ></i>
       </div>
-
       <div>Home</div>
       <div>About</div>
       <div>Contact Us</div>
@@ -46,7 +48,7 @@ const Navbar = () => {
         <span>{buttonLabel}</span>
       </button>
       <div>
-        <i className="fa-regular fa-heart"></i>
+      <i className="fa-solid fa-cart-shopping m-2"></i>Cart
       </div>
     </div>
   );

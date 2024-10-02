@@ -10,13 +10,14 @@
   margin-left: 40px;
   margin-right: 40px;
   justify-content: center;
+  
 }
 
 .cards {
   display: flex;
   flex-direction: column;
   width: 310px;
-  height: 280px;
+  height: 300px;
   cursor: pointer;
   border-radius: 10px;
   margin: 20px;
@@ -70,9 +71,26 @@ img {
 }
 
 .cuisine {
+  display: flex;
+  justify-content:space-between;
   color: rgb(199, 30, 30);
   margin-top: 3px;
   margin-bottom: 5px;
+  gap:2px;
+}
+.cuisine button{
+  border:1px solid red;
+  padding-left:18px;
+  padding-right:18px;
+  border:none;
+  color:white;
+  background-color:black;
+  border-radius:3px;
+  padding-top:4px;
+  padding-bottom:4px;
+}
+.cuisine button:hover{
+  background-color:rgb(27,166,114);
 }
 
 .filterdata {
@@ -199,3 +217,16 @@ img {
   margin-left: 100px;
   margin-right: 100px;
 }
+
+/* .add{
+  color:red;
+  padding:10px;
+}
+
+.add button{
+  border:1px solid red;
+  padding-left:10px;
+  padding-right:10px;
+
+
+} */

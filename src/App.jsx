@@ -4,6 +4,7 @@ import './App.css';
 import Navbar from "./Navbar";
 import Shimmer from "./Shimmer";
 import Ct from './Ct';
+import useOnlineStatus from "./useOnlineStatus";
 
 function App() {
   const [originalRecipes, setOriginalRecipes] = useState([]); // Original data
@@ -52,6 +53,12 @@ function App() {
     setRecipes(newData);
   };
 
+//useonline hooks for showing the internet is not available for no-internet
+ const onlineStatus= useOnlineStatus()
+ if(onlineStatus===false)
+ return(<h4>Looks like you are offline!Please check you internet Connection !!!</h4>)
+
+
   if (originalRecipes.length === 0) return <Shimmer />;
 
   return (
@@ -75,8 +82,13 @@ function App() {
             <div className='cards' key={item.id}>
               <img src={item.image} alt="no-data" />
               <div className="cardgap">
-                <div className='name'>{item.name}</div>
-                <div className="cuisine">{item.cuisine}</div>
+                <div className='name'>
+                  <span>{item.name}</span>
+                </div>
+                <div className="cuisine">
+                  <span>{item.cuisine}</span>
+                  <span className="add"><button>Add</button></span>
+                </div>
                 <div className="dis">
                   <div>{(item.prepTimeMinutes) / 10} km</div>
                   <div className="backrating">
