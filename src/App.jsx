@@ -10,6 +10,7 @@ function App() {
   const [originalRecipes, setOriginalRecipes] = useState([]); // Original data
   const [recipes, setRecipes] = useState([]); // Duplicate copy of data
   const [searchText, setSearchText] = useState(""); // Search state
+  const [cart, setCart] = useState([]); // Add to cart
 
   useEffect(() => {
     axios.get("https://dummyjson.com/recipes")
@@ -33,37 +34,36 @@ function App() {
     setRecipes(filtered);
   };
 
-  // Expose the functions and state for context
-  const obj = {
-    searchText,
-    seafun,
-    filtered: filterfun,
-    setSearchText, // Expose setSearchText to clear input
-  };
-
-  // Function to filter data by rating
   const filterByRating = () => {
     const newData = originalRecipes.filter(item => item.rating > 4.8);
     setRecipes(newData);
   };
 
-  // Unified function to filter data by meal type
   const filterByMealType = (mealType) => {
     const newData = originalRecipes.filter(item => item.mealType.includes(mealType));
     setRecipes(newData);
   };
 
-//useonline hooks for showing the internet is not available for no-internet
- const onlineStatus= useOnlineStatus()
- if(onlineStatus===false)
- return(<h4>Looks like you are offline!Please check you internet Connection !!!</h4>)
+  // useOnline hooks for showing internet status
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false)
+    return (<h4>Looks like you are offline! Please check your internet connection!</h4>);
 
+  // Add to cart functionality
+  const addToCart = (item) => {
+    console.log('Adding to cart:', item);
+    setCart(prevCart => {
+      const updatedCart = [...prevCart, item];
+      console.log('Updated cart:', updatedCart); // Log updated cart
+      return updatedCart; // Return the new cart state
+    });
+  };
 
   if (originalRecipes.length === 0) return <Shimmer />;
 
   return (
     <div>
-      <Ct.Provider value={obj}>
+      <Ct.Provider value={{ searchText, seafun, filtered: filterfun, setSearchText }}>
         <Navbar />
       </Ct.Provider>
 
@@ -87,7 +87,9 @@ function App() {
                 </div>
                 <div className="cuisine">
                   <span>{item.cuisine}</span>
-                  <span className="add"><button>Add</button></span>
+                  <span className="add" onClick={() => addToCart(item)}>
+                    <button>Add +</button>
+                  </span>
                 </div>
                 <div className="dis">
                   <div>{(item.prepTimeMinutes) / 10} km</div>
