@@ -10,3 +10,7 @@ Currently, two official plugins are available:
 
 <!-- //Shimmer-UI -->
 <!-- https://medium.com/@gunjanj016/shimmer-ui-add-wow-factor-in-your-next-app-ebaffa1e9b59 -->
+1-git clone <giturl>
+2-npm i update
+3-npm audit fix --force
+4-It will work
